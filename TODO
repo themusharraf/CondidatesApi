@@ -1,0 +1,9 @@
+1. Anketa va saqlangan xabarlar modellarni tuzish
+2. Users larni login register  qismini simplejwt token orqali qilish
+3. xatoliklarni kurib chiqish kerak
+4. servega quyish va debug qilish kerak
+5. code ni test qilish
+6. clean code
+7. docker
+
+8. chat websocket birga bir yozish
