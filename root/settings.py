@@ -1,11 +1,12 @@
 from pathlib import Path
+
 import os
 from dotenv import load_dotenv
 
 load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = ('django-insecure-xdz9$+7$ez0n8y1z7$3m(4l^&gouq58n&b3+alj-wmvqmci4%t')
 
 DEBUG = True
 
@@ -24,6 +25,7 @@ INSTALLED_APPS = [
                      'django.contrib.sessions',
                      'django.contrib.messages',
                      'django.contrib.staticfiles',
+                     "rest_framework",
                  ] + MY_APP
 
 MIDDLEWARE = [
@@ -41,7 +43,7 @@ ROOT_URLCONF = 'root.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -89,3 +91,5 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'users.User'
