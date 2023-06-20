@@ -15,6 +15,8 @@ MY_APP = [
     'anketa',
     'chat',
     'users',
+    'drf_yasg',
+    'rest_framework.authtoken',
 ]
 
 INSTALLED_APPS = [
@@ -77,6 +79,19 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DATE_INPUT_FORMATS': ["%H:%M %d-%m-%Y"],
+    'DATETIME_FORMAT': '%H:%M %d-%m-%Y',
+
+}
 
 LANGUAGE_CODE = 'en-us'
 
