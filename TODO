@@ -2,6 +2,7 @@
 2. Users  login register simplejwt token  ✅
 3. debug ing ✅
 4. docs api swagger ✅
+5. debug_toolbar server va SQL so'rovlar tekshirish ✅
 5. code ni test qilish
 6. clean code
 6. docker
