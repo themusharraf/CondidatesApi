@@ -11,7 +11,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-MY_APP = [
+MY_APPS = [
     'anketa',
     'chat',
     'users',
@@ -26,7 +26,7 @@ INSTALLED_APPS = [
                      'django.contrib.sessions',
                      'django.contrib.messages',
                      'django.contrib.staticfiles',
-                 ] + MY_APP
+] + MY_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -92,6 +92,7 @@ REST_FRAMEWORK = {
     'DATETIME_FORMAT': '%H:%M %d-%m-%Y',
 
 }
+AUTH_USER_MODEL = 'users.User'
 
 LANGUAGE_CODE = 'en-us'
 
