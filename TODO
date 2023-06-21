@@ -1,10 +1,10 @@
-1. Anketa va saqlangan xabarlar modellarni tuzish
-2. Users larni login register  qismini simplejwt token orqali qilish
-3. xatoliklarni kurib chiqish kerak
-4. servega quyish va debug qilish kerak
+1. candidat models ✅
+2. Users  login register simplejwt token  ✅
+3. debug ing ✅
+4. docs api swagger ✅
 5. code ni test qilish
 6. clean code
-6. docs api swagger
-7. docker
+6. docker
+7. add server
 
 8. chat websocket birga bir yozish
