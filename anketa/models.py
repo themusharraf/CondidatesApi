@@ -4,6 +4,14 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 
+class BaseModel(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ...
+
+
 class Candidate(models.Model):
     class Type(models.TextChoices):
         TOSHKENT = 'toshkent', 'Toshkent'
@@ -39,6 +47,7 @@ class Candidate(models.Model):
     health = models.CharField(max_length=50)  # nomzod sog'ligi
     prayed = models.CharField(max_length=50)  # nomzod ibodatlimi?
     desires = models.TextField()  # nomzod istaklari
+    view_count = models.PositiveIntegerField(default=0)  # nomzod necha marta kurilgan
 
 
 @receiver(post_save, sender=User)
