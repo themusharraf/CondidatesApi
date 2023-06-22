@@ -9,10 +9,10 @@ class BaseModel(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ...
+        abstract = True
 
 
-class Candidate(models.Model):
+class Candidate(BaseModel):
     class Type(models.TextChoices):
         TOSHKENT = 'toshkent', 'Toshkent'
         ANDIJON = 'andijon', 'Andijon'
@@ -34,13 +34,13 @@ class Candidate(models.Model):
         AYOL = 'ayol', 'Ayol'
 
     author = models.OneToOneField(User, on_delete=models.CASCADE)  # nomzod foydalanuvchi
-    status = models.BooleanField(default=False)
     gender = models.CharField(max_length=5, choices=Gender.choices)  # nomzod jinsi
     address = models.CharField(max_length=25, choices=Type.choices)  # nomzod manzili
     full_name = models.CharField(max_length=25)  # nomzod ismi
+    year = models.CharField(max_length=4)  # nomzod yili
     height = models.FloatField()  # nomzod bo'yi
     age = models.PositiveIntegerField()  # nomzod yoshi
-    weight = models.FloatField()  # nomzod vazni
+    weight = models.IntegerField()  # nomzod vazni
     married = models.CharField(max_length=25)  # nomzod turmush qurganmi?
     profession = models.CharField(max_length=50)  # nomzod kasbi
     nation = models.CharField(max_length=25)  # nomzod millati
@@ -48,16 +48,3 @@ class Candidate(models.Model):
     prayed = models.CharField(max_length=50)  # nomzod ibodatlimi?
     desires = models.TextField()  # nomzod istaklari
     view_count = models.PositiveIntegerField(default=0)  # nomzod necha marta kurilgan
-
-
-@receiver(post_save, sender=User)
-def create_candidate(sender, instance, created, **kwargs):
-    if created:
-        Candidate.objects.create(user=instance)
-
-
-@receiver(post_save, sender=Candidate)
-def update_user_status(sender, instance, created, **kwargs):
-    if created:
-        instance.user.is_active = instance.status
-        instance.user.save()

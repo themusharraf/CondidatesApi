@@ -8,7 +8,6 @@ from users.managers import UserManager
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField(_('email address'), unique=True)
     phone = models.CharField(_('phone'), unique=True, max_length=9)
     first_name = models.CharField(_('first name'), max_length=30, blank=True)
     last_name = models.CharField(_('last name'), max_length=30, blank=True)
