@@ -1,9 +1,9 @@
 from django.db.models import F
 from rest_framework.viewsets import ModelViewSet
-
-from anketa.models import Candidate
+from anketa.models import Candidate, Saved
 from anketa.permissions import IsAuthorOrReadOnly
-from anketa.serializers import CandidateSerializer, CandidateDetailModelSerializer
+from anketa.serializers import CandidateDetailModelSerializer
+from rest_framework import generics
 
 
 class CandidateModelViewSet(ModelViewSet):
@@ -15,3 +15,5 @@ class CandidateModelViewSet(ModelViewSet):
         query = super().get_queryset()
         query.update(view_count=F('view_count') + 1)
         return query
+
+

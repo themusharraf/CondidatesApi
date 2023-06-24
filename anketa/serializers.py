@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer
-from anketa.models import Candidate
+from anketa.models import Candidate, Saved
 
 
 class CandidateSerializer(ModelSerializer):
@@ -14,3 +14,9 @@ class CandidateDetailModelSerializer(ModelSerializer):
         fields = (
             'year', 'address', 'nation', 'height', 'weight', 'health', 'married', 'prayed', 'desires', 'created_at',
             'view_count')
+
+
+class SavedSerializer(ModelSerializer):
+    class Meta:
+        model = Saved
+        fields = '__all__'

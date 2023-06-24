@@ -48,3 +48,14 @@ class Candidate(BaseModel):
     prayed = models.CharField(max_length=50)  # nomzod ibodatlimi?
     desires = models.TextField()  # nomzod istaklari
     view_count = models.PositiveIntegerField(default=0)  # nomzod necha marta kurilgan
+
+    def __str__(self):
+        return self.full_name
+
+
+class Saved(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    candidate = models.ForeignKey(Candidate, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.candidate.full_name
