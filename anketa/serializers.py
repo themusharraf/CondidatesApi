@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Condidate
+from .models import Condidate, SavedCondidate
 
 
 class CondidateSerializers(serializers.ModelSerializer):
@@ -22,5 +22,16 @@ class CondidateSerializers(serializers.ModelSerializer):
         )
     
     def create(self, validated_data):
-        condidate = Condidate.objects.create(**validated_data,condidate_user_id=1)
+        condidate = Condidate.objects.create(**validated_data, condidate_user_id=1)
         return condidate
+
+
+class SavedCondidateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = SavedCondidate
+        fields = 'condidate', 'date'
+
+    def create(self, validated_data):
+        saved_condidate = SavedCondidate.objects.create(**validated_data)
+        return saved_condidate

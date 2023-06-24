@@ -9,5 +9,6 @@ class User(AbstractUser):
     password = models.CharField(max_length=16)
 
     def __str__(self):
-        return f"{self.name} {self.username}"
- 
+        return f"{self.name or self.username}"
+
+
