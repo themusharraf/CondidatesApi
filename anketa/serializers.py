@@ -7,6 +7,7 @@ class CondidateSerializers(serializers.ModelSerializer):
     class Meta:
         model = Condidate
         fields = (
+            'id',
             'condidate_name', 
             'condidate_age', 
             'condidate_gender',
@@ -30,7 +31,7 @@ class SavedCondidateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = SavedCondidate
-        fields = 'condidate', 'date'
+        fields = ('id', 'condidate', 'date')
 
     def create(self, validated_data):
         saved_condidate = SavedCondidate.objects.create(**validated_data)

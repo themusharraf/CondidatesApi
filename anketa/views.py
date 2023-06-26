@@ -2,9 +2,8 @@ from rest_framework.generics import ListAPIView
 from rest_framework.views import APIView
 from rest_framework import permissions
 from rest_framework.response import Response
-from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework.generics import ListAPIView, RetrieveAPIView, DestroyAPIView
 
-from django.shortcuts import get_object_or_404
 
 from .import serializers
 from .models import Condidate, SavedCondidate
@@ -42,8 +41,6 @@ class CondidateView(APIView):
 
 class SavedView(ListAPIView):
     permission_classes = [permissions.IsAuthenticated, ]
-
-    # queryset = SavedCondidate.objects.all()
     serializer_class = serializers.SavedCondidateSerializer
 
     def get_queryset(self):
@@ -55,13 +52,13 @@ class SavedDetailView(RetrieveAPIView):
     permission_classes = [permissions.IsAuthenticated, ]
     queryset = SavedCondidate.objects.all()
     serializer_class = serializers.SavedCondidateSerializer
-    # def get_queryset(self):
-    #     return SavedCondidate.objects.filter(user=self.request.user).first()
 
-    # def get(self, request, pk, *args, **kwargs):
-    #     condidate = get_object_or_404(Condidate, id=pk)
-    #     saved_candidate = SavedCondidate.objects.filter(user=request.user, condidate=condidate)
-    #     Condidate.objects.filter(user=request.user, condidate_user=condidate)
-    #     data = Response('saved')
-    #     return data
-    #
+
+class RemoweFromSaveView(DestroyAPIView):
+    permission_classes = [permissions.IsAuthenticated, ]
+    serializer_class = serializers.SavedCondidateSerializer
+
+    def get_queryset(self):
+        user = self.request.user
+        return SavedCondidate.objects.filter(user=user)
+            
