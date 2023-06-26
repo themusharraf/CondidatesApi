@@ -1,3 +1,4 @@
+from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
 from anketa.models import Candidate, Saved
 
@@ -16,7 +17,9 @@ class CandidateDetailModelSerializer(ModelSerializer):
             'view_count')
 
 
-class SavedSerializer(ModelSerializer):
+class SavedCandidateSerializer(ModelSerializer):
+    id = serializers.IntegerField(read_only=True)
+
     class Meta:
         model = Saved
-        fields = '__all__'
+        fields = ('id', 'author', 'candidate')
