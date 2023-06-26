@@ -2,16 +2,18 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.views import Response, APIView
 from rest_framework import status
-from anketa.serializers import SavedCandidateSerializer
 from anketa.models import Candidate, Saved
 from anketa.permissions import IsAuthorOrReadOnly
-from anketa.serializers import CandidateDetailModelSerializer, CandidateSerializer
+from anketa.serializers import CandidateDetailModelSerializer, CandidateSerializer, SavedCandidateSerializer
+from rest_framework.filters import SearchFilter, OrderingFilter
 
 
 class CandidateModelViewSet(ModelViewSet):
     queryset = Candidate.objects.all()
     permission_classes = IsAuthorOrReadOnly,
     serializer_class = CandidateSerializer
+    filter_backends = (SearchFilter, OrderingFilter)
+    search_fields = ('address', 'year', 'married')
 
     def retrieve(self, request, *args, **kwargs):
         self.get_queryset()
